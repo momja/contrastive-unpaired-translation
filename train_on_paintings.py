@@ -24,24 +24,24 @@ if __name__ == "__main__":
     training_names_artist = []
     with open(fpath, 'r') as artist_class_file:
         training_names_artist = artist_class_file.read().splitlines()
-    training_names_artist = {i:training_name.split(' ')[1] for (i,training_name) in enumerate(training_names_artist) if training_name in artist_classes}
+    training_names_artist = {i:training_name.split(' ')[1] for (i,training_name) in enumerate(training_names_artist) if training_name.split(' ')[1] in artist_classes}
     print(training_names_artist)
 
     training_names_style = []
     with open(fpath2, 'r') as style_class_file:
-        training_names = style_class_file.read().splitlines()
-    training_names_style = {i:training_name.split(' ')[1] for (i,training_name) in enumerate(training_names_style) if training_name in style_classes}
+        training_names_style = style_class_file.read().splitlines()
+    training_names_style = {i:training_name.split(' ')[1] for (i,training_name) in enumerate(training_names_style) if training_name.split(' ')[1] in style_classes}
     print(training_names_style)
 
     # Create directories for all artists and styles
-    #os.makedirs('style_dataset', exist_ok=True()
-    #os.makedirs('artist_dataset', exist_ok=True)
+    os.makedirs('style_dataset', exist_ok=True)
+    os.makedirs('artist_dataset', exist_ok=True)
     dataset_dir = './'
     for training_name in training_names_artist.values():
-        new_dirpath = os.path.join('style_dataset',training_name)
+        new_dirpath = os.path.join('artist_dataset',training_name)
         os.makedirs(new_dirpath, exist_ok=True)
     for training_name in training_names_style.values():
-        new_dirpath = os.path.join('artist_dataset',training_name)
+        new_dirpath = os.path.join('style_dataset',training_name)
         os.makedirs(new_dirpath, exist_ok=True)
 
     # Create file paths for each training
@@ -52,12 +52,11 @@ if __name__ == "__main__":
             fname = os.path.split(filepath)[1]
             full_path = os.path.join(wikiart_dataset, filepath)
             style, genre, artist = int(style), int(genre), int(artist)
-            if subject == 'artist' and artist > 0:
+            if subject == 'artist' and artist in training_names_artist:
                 # find image in wikiart dataset, copy to another folder which we can use for training
                 new_filepath = os.path.join(training_names_artist[artist], fname)
                 shutil.copyfile(full_path, os.path.join('artist_dataset', new_filepath))
-            elif subject == 'style' and style > 0:
+            elif subject == 'style' and style in training_names_style:
                 new_filepath = os.path.join(training_names_style[style], fname)
                 shutil.copyfile(full_path ,os.path.join('style_dataset', new_filepath))
-
 
