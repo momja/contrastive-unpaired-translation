@@ -23,13 +23,13 @@ if __name__ == "__main__":
     training_names_artist = []
     with open(fpath, 'r') as artist_class_file:
         training_names_artist = artist_class_file.read().splitlines()
-    training_names_artist = [training_name.split(' ')[1] for training_name in training_names_artist]
+    training_names_artist = [training_name.split(' ')[1] for training_name in training_names_artist if training_name in artist_classes]
     print(training_names_artist)
 
     training_names_style = []
     with open(fpath2, 'r') as style_class_file:
         training_names = style_class_file.read().splitlines()
-    training_names_style = [training_name.split(' ')[1] for training_name in training_names_style]
+    training_names_style = [training_name.split(' ')[1] for training_name in training_names_style if training_name in style_classes]
     print(training_names_style)
 
     # Create directories for all artists and styles
