@@ -5,7 +5,7 @@ import csv
 import cv2
 
 # List the classes that need data generated for them
-style_classes = ['Synthetic_Cubism', 'Contemporary_Realism', 'Fauvism', 'New_Realism', 'Action_Painting', 'Pointillism', 'Analytical_Cubism']
+style_classes = ['Synthetic_Cubism', 'Contemporary_Realism', 'Fauvism', 'New_Realism', 'Action_painting', 'Pointillism', 'Analytical_Cubism']
 artist_classes = ['Martiros_Saryan', 'Edgar_Degas', 'Gustave_Dore', 'Marc_Chagall', 'Pablo_Picasso', 'Ivan_Shishkin', 'Ilya_Repin', 'John_Singer_Sargent', 'Salvador_Dali', 'Boris_Kustodiev', 'Raphael_Kirchner', 'Childe_Hassam']
 
 
